@@ -179,7 +179,7 @@ public class PlayerEditor {
     }
 
     public void editItemFrame(ItemFrame itemFrame) {
-        if (!getPlayer().hasPermission("asedit.toggleitemframevisibility") || !plugin.invisibleItemFrames) return; //Option to use perms or Config
+        if (!(getPlayer().hasPermission("asedit.toggleitemframevisibility") || plugin.invisibleItemFrames)) return; //Option to use perms or Config
 
         //Generate a new ArmorStandManipulationEvent and call it out.
         ItemFrameManipulatedEvent event = new ItemFrameManipulatedEvent(itemFrame, getPlayer());
@@ -407,12 +407,12 @@ public class PlayerEditor {
     }
 
     void toggleVisible(ArmorStand armorStand) {
-        if (!getPlayer().hasPermission("asedit.togglearmorstandvisibility") || !plugin.armorStandVisibility) return; //Option to use perms or Config
+        if (!(getPlayer().hasPermission("asedit.togglearmorstandvisibility") || plugin.armorStandVisibility)) return; //Option to use perms or Config
         armorStand.setVisible(!armorStand.isVisible());
     }
 
     void toggleItemFrameVisible(ItemFrame itemFrame) {
-        if (!getPlayer().hasPermission("asedit.toggleitemframevisibility") || !plugin.invisibleItemFrames) return; //Option to use perms or Config
+        if (!(getPlayer().hasPermission("asedit.toggleitemframevisibility") || plugin.invisibleItemFrames)) return; //Option to use perms or Config
         itemFrame.setVisible(!itemFrame.isVisible());
     }
 
