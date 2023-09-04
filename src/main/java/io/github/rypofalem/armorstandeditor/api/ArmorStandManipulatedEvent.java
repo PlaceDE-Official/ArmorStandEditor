@@ -27,19 +27,25 @@ import org.bukkit.event.HandlerList;
 
 public class ArmorStandManipulatedEvent extends ArmorStandEvent implements Cancellable {
 
-	@Getter @Setter
-	private boolean cancelled = false;
+    /* Generated for Bukkit */
+    private static final HandlerList handlers = new HandlerList();
+    @Getter
+    protected final Player player;
+    @Getter
+    @Setter
+    private boolean cancelled = false;
 
-	@Getter
-	protected final Player player;
+    public ArmorStandManipulatedEvent(ArmorStand armorStand, Player player) {
+        super(armorStand);
+        this.player = player;
+    }
 
-	public ArmorStandManipulatedEvent(ArmorStand armorStand, Player player) {
-		super(armorStand);
-		this.player = player;
-	}
+    public static HandlerList getHandlerList() {
+        return (handlers);
+    }
 
-	/* Generated for Bukkit */
-	private static final HandlerList handlers = new HandlerList();
-	public static HandlerList getHandlerList() { return (handlers); }
-	@Override public HandlerList getHandlers() { return (handlers); }
+    @Override
+    public HandlerList getHandlers() {
+        return (handlers);
+    }
 }

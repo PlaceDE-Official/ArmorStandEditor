@@ -28,40 +28,39 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-/** @Deprecated
- * Plugin has gone unsupported for a while - Might be cleaned up later. **/
+/**
+ * @Deprecated Plugin has gone unsupported for a while - Might be cleaned up later.
+ **/
 
-public class GriefPreventionProtection implements Protection  {
+public class GriefPreventionProtection implements Protection {
 
     private boolean gpEnabled;
     private GriefPrevention griefPrevention = null;
 
-    /** @Deprecated **/
-    public GriefPreventionProtection(){
+    public GriefPreventionProtection() {
         gpEnabled = Bukkit.getPluginManager().isPluginEnabled("GriefPrevention");
 
-        if(!gpEnabled) return;
+        if (!gpEnabled) return;
         griefPrevention = (GriefPrevention) Bukkit.getPluginManager().getPlugin("GriefPrevention");
     }
 
-    /** @Deprecated **/
-    public boolean checkPermission(Block block, Player player){
-        if(!gpEnabled) return true;
-        if(player.hasPermission("asedit.ignoreProtection.griefPrevention")) return true;
+    public boolean checkPermission(Block block, Player player) {
+        if (!gpEnabled) return true;
+        if (player.hasPermission("asedit.ignoreProtection.griefPrevention")) return true;
 
         Location blockLoc = block.getLocation();
 
-        if(GriefPrevention.instance.claimsEnabledForWorld(blockLoc.getWorld())){
+        if (GriefPrevention.instance.claimsEnabledForWorld(blockLoc.getWorld())) {
 
             Claim landClaim = griefPrevention.dataStore.getClaimAt(blockLoc, false, null);
             Material blockMat = block.getType();
 
-            if(landClaim != null && landClaim.allowEdit(player) != null && landClaim.allowBuild(player,blockMat) != null){
+            if (landClaim != null && landClaim.allowEdit(player) != null && landClaim.allowBuild(player, blockMat) != null) {
                 player.sendMessage(ChatColor.RED + landClaim.allowEdit(player));
                 player.sendMessage(ChatColor.RED + landClaim.allowBuild(player, blockMat));
                 return false;
             }
-        } else{
+        } else {
             return true;
         }
 

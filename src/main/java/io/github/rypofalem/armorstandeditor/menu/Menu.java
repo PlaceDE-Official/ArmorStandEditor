@@ -35,15 +35,19 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.ArrayList;
 
 public class Menu {
+    private static String name = "Armor Stand Editor Menu";
     private final Inventory menuInv;
     private final PlayerEditor pe;
-    private static String name = "Armor Stand Editor Menu";
 
     public Menu(PlayerEditor pe) {
         this.pe = pe;
         name = pe.plugin.getLang().getMessage("mainmenutitle", "menutitle");
         menuInv = Bukkit.createInventory(pe.getManager().getMenuHolder(), 54, name);
         fillInventory();
+    }
+
+    public static String getName() {
+        return name;
     }
 
     private void fillInventory() {
@@ -201,12 +205,12 @@ public class Menu {
                     "copyslot", "slot 4", "4");
         }
 
-        if (pe.getPlayer().hasPermission("asedit.paste")){
+        if (pe.getPlayer().hasPermission("asedit.paste")) {
             paste = createIcon(new ItemStack(Material.ENCHANTED_BOOK),
                     "paste", "mode paste");
         }
 
-        if(pe.getPlayer().hasPermission("asedit.head") && pe.plugin.getAllowedToRetrievePlayerHead()){
+        if (pe.getPlayer().hasPermission("asedit.head") && pe.plugin.getAllowedToRetrievePlayerHead()) {
             playerHead = createIcon(new ItemStack(Material.PLAYER_HEAD, 1),
                     "playerheadmenu",
                     "playerhead");
@@ -244,11 +248,9 @@ public class Menu {
         return icon;
     }
 
-
     private String getIconName(String path, String option) {
         return pe.plugin.getLang().getMessage(path, "iconname", option);
     }
-
 
     private String getIconDescription(String path, String option) {
         return pe.plugin.getLang().getMessage(path + ".description", "icondescription", option);
@@ -259,9 +261,5 @@ public class Menu {
             fillInventory();
             pe.getPlayer().openInventory(menuInv);
         }
-    }
-
-    public static String getName() {
-        return name;
     }
 }

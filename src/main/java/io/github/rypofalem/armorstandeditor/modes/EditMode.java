@@ -27,11 +27,11 @@ public enum EditMode {
 
     private String name;
 
-    EditMode(String name){
+    EditMode(String name) {
         this.name = name;
     }
 
-    public String toString(){
+    public String toString() {
         return name;
     }
 }

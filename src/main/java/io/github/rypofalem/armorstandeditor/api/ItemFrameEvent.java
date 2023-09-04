@@ -23,13 +23,13 @@ import lombok.Getter;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.event.Event;
 
-public abstract class ItemFrameEvent extends Event{
+public abstract class ItemFrameEvent extends Event {
 
-	@Getter
-	protected final ItemFrame itemFrame;
+    @Getter
+    protected final ItemFrame itemFrame;
 
-	public ItemFrameEvent(ItemFrame itemFrame) {
-		this.itemFrame = itemFrame;
-	}
+    public ItemFrameEvent(ItemFrame itemFrame) {
+        this.itemFrame = itemFrame;
+    }
 
 }

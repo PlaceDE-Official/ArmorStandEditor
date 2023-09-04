@@ -23,13 +23,13 @@ import lombok.Getter;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.event.Event;
 
-public abstract class ArmorStandEvent extends Event{
+public abstract class ArmorStandEvent extends Event {
 
-	@Getter
-	protected final ArmorStand armorStand;
+    @Getter
+    protected final ArmorStand armorStand;
 
-	public ArmorStandEvent(ArmorStand armorStand) {
-		this.armorStand = armorStand;
-	}
+    public ArmorStandEvent(ArmorStand armorStand) {
+        this.armorStand = armorStand;
+    }
 
 }

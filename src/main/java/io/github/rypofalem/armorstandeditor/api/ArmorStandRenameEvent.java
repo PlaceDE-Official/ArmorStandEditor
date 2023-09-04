@@ -27,23 +27,30 @@ import org.bukkit.event.HandlerList;
 
 public class ArmorStandRenameEvent extends ArmorStandEvent implements Cancellable {
 
-	@Getter @Setter
-	private boolean cancelled = false;
-	@Getter @Setter
-	protected String name;
+    /* Generated for Bukkit */
+    private static final HandlerList handlers = new HandlerList();
+    @Getter
+    protected final Player player;
+    @Getter
+    @Setter
+    protected String name;
+    @Getter
+    @Setter
+    private boolean cancelled = false;
 
-	@Getter
-	protected final Player player;
+    public ArmorStandRenameEvent(ArmorStand armorStand, Player player, String name) {
+        super(armorStand);
+        this.player = player;
+        this.name = name;
+    }
 
-	public ArmorStandRenameEvent(ArmorStand armorStand, Player player, String name) {
-		super(armorStand);
-		this.player = player;
-		this.name = name;
-	}
+    public static HandlerList getHandlerList() {
+        return (handlers);
+    }
 
-	/* Generated for Bukkit */
-	private static final HandlerList handlers = new HandlerList();
-	public static HandlerList getHandlerList() { return (handlers); }
-	@Override public HandlerList getHandlers() { return (handlers); }
+    @Override
+    public HandlerList getHandlers() {
+        return (handlers);
+    }
 
 }

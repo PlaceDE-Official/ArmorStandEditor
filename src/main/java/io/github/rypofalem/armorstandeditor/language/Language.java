@@ -24,20 +24,15 @@ import io.github.rypofalem.armorstandeditor.ArmorStandEditorPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class Language {
     final String DEFAULT_LANG = "en_US.yml";
+    ArmorStandEditorPlugin plugin;
     private YamlConfiguration langConfig = null;
     private YamlConfiguration defConfig = null;
     private File langFile = null;
-    ArmorStandEditorPlugin plugin;
 
     public Language(String langFileName, ArmorStandEditorPlugin plugin) {
         this.plugin = plugin;
@@ -93,14 +88,14 @@ public class Language {
         return getMessage(path, "info");
     }
 
-    public String getRawMessage(String path, String format, String option){
+    public String getRawMessage(String path, String format, String option) {
         String message = ChatColor.stripColor(getMessage(path, format, option));
         format = getFormat(format);
         ChatColor color = ChatColor.WHITE;
-        String bold = "" , italic = "" , underlined = "" , obfuscated = "" , strikethrough = "";
-        for(int i = 0; i < format.length(); i++){
+        String bold = "", italic = "", underlined = "", obfuscated = "", strikethrough = "";
+        for (int i = 0; i < format.length(); i++) {
             ChatColor code = ChatColor.getByChar(format.charAt(i));
-            switch(code) {
+            switch (code) {
                 case MAGIC:
                     obfuscated = ", \"obfuscated\": true";
                     break;
@@ -116,14 +111,15 @@ public class Language {
                 case ITALIC:
                     italic = ", \"italic\": true";
                     break;
-                default: color = !code.isColor() ? color : code;
+                default:
+                    color = !code.isColor() ? color : code;
             }
         }
         return String.format("{\"text\":\"%s\", \"color\":\"%s\"%s%s%s%s%s}", message, color.name().toLowerCase(),
-            obfuscated, bold, strikethrough, underlined, italic);
+                obfuscated, bold, strikethrough, underlined, italic);
     }
 
-    private String getFormat(String format){
+    private String getFormat(String format) {
         format = getString(format);
         return format == null ? "" : format;
     }
